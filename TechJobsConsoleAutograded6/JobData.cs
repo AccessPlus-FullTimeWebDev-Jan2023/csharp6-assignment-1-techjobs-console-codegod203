@@ -43,55 +43,6 @@ namespace TechJobsConsoleAutograded6
          */
 
         //TODO: Complete the FindByValue method
-
-        public static List<Dictionary<string, string>> FindByValue(string value)
-        {
-            // load data, if not already loaded
-            LoadData();
-            //type here
-            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>(); //this is creating a list of dictionary entries
-
-            foreach (Dictionary<string, string> row in AllJobs) //this is iterating through all jobs and pulling 1 row(job) at a time; each row is one combined string
-            {
-                foreach (string key in row.Keys)//this one is iterating thru each cell (separating the row which was one whole string and breaking each stri by it's value), checking the user input to see if it matches each cell.
-                {
-                    string userValue = row[key]; //this gives me a place to hold the userValue
-
-                    if (userValue.ToLower().Contains(value.ToLower()))
-
-                    {
-                        jobs.Add(row); //this is where values are added 
-                        break; //once a value is found in the row, it will stop iterating that row. This prevents it from iterating thru the rest of the same row and finding the same value in that row
-                    }
-                }
-            }
-            return jobs; ///this was here already //I need to change out null to something
-        }
-
-        /**Returns results of search the jobs data by key/value, using inclusion of the search term. *
-         * For example, searching for employer "Enterprise" will include results with "Enterprise Holdings, Inc".*/
-
-        public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value) //this is taking user input (from Search), by which column they chose and matching the values
-        {
-            // load data, if not already loaded
-            LoadData();
-
-            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>(); //match this //this is empty dictionary that we are storing our results in
-
-            foreach (Dictionary<string, string> row in AllJobs) //match this// iterating thru all the rows
-            {
-                string aValue = row[column];  //match this but instead of column use value; user is entering a value; this searches 
-
-                //TODO: Make search case-insensitive
-                if (aValue.ToLower().Contains(value.ToLower())) //if the value that the user enters matches the search criteria value (ex: location), add it to the row
-                {
-                    jobs.Add(row);
-                }
-            }
-
-            return jobs;
-        }
-
         /**
          * Returns results of search the jobs data by key/value, using
          * inclusion of the search term.
@@ -103,6 +54,58 @@ namespace TechJobsConsoleAutograded6
         /*
          * Load and parse data from job_data.csv
          */
+
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Dictionary<string, string>> listing = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> jobs in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> job in jobs)
+                {
+                    if (job.Value.Contains(value))
+                    {
+                        listing.Add(jobs);
+                    }
+                }
+            }
+
+            return listing;
+        }
+
+        /**
+         * Returns results of search the jobs data by key/value, using
+         * inclusion of the search term.
+         *
+         * For example, searching for employer "Enterprise" will include results
+         * with "Enterprise Holdings, Inc".
+         */
+        public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                string aValue = row[column];
+
+
+                //TODO: Make search case-insensitive
+
+                {
+                    if (aValue.ToUpper().Contains(value.ToUpper()))
+
+
+                        jobs.Add(row);
+                }
+            }
+
+            return jobs;
+        }
         private static void LoadData()
         {
 
