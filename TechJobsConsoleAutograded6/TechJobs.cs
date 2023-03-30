@@ -143,17 +143,17 @@ namespace TechJobsConsoleAutograded6
             }
             else
             {
-                foreach (Dictionary<string, string> job in someJobs)
+                foreach (Dictionary<string, string> list in someJobs)
 
                 {
                     Console.WriteLine($"{Environment.NewLine}*****");
-                    foreach (KeyValuePair<string, string> pair in job)
+                    foreach (KeyValuePair<string, string> kvp in list)
 
 
 
                     {
 
-                        Console.WriteLine($"{pair.Key}: {pair.Value}");
+                        Console.WriteLine($"{kvp.Key}: {kvp.Value}");
                     }
                     Console.WriteLine($"*****");
                 }
