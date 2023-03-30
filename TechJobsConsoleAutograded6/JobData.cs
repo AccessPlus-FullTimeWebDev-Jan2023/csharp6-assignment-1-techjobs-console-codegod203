@@ -60,20 +60,26 @@ namespace TechJobsConsoleAutograded6
             // load data, if not already loaded
             LoadData();
 
-            List<Dictionary<string, string>> listing = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
-            foreach (Dictionary<string, string> jobs in AllJobs)
+            foreach (Dictionary<string, string> row in AllJobs)
             {
-                foreach (KeyValuePair<string, string> job in jobs)
+                foreach (KeyValuePair<string, string> kvp in row)
                 {
-                    if (job.Value.Contains(value))
+
+                    if (kvp.Value.ToLower().Contains(value.ToLower()))
                     {
-                        listing.Add(jobs);
+                        if (jobs.Contains(row))
+                        {
+                            continue;
+                        }
+                        jobs.Add(row);
                     }
-                }
+
+                 } 
             }
 
-            return listing;
+            return jobs;
         }
 
         /**
