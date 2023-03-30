@@ -62,7 +62,7 @@ public class UnitTest1
     }
 
     [TestMethod]
-    public void TestCaseInsensitiveSearch()
+    public void TestCaseInsensitiveSearch(Assert assert)
     {
         string text = System.IO.File.ReadAllText("TestCaseInsensitiveSearch.txt");
 
