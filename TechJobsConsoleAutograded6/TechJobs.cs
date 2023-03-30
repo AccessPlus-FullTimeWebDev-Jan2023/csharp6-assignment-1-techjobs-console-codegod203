@@ -155,7 +155,7 @@ namespace TechJobsConsoleAutograded6
 
                         Console.WriteLine($"{pair.Key}: {pair.Value}");
                     }
-                    Console.WriteLine($"*****{Environment.NewLine}");
+                    Console.WriteLine($"*****");
                 }
             }
         }   //for each(KeyValuePair<string, string> entry in PrintJobs)
