@@ -56,27 +56,31 @@ namespace TechJobsConsoleAutograded6
          */
 
         public static List<Dictionary<string, string>> FindByValue(string value)
-        {
+        
             // load data, if not already loaded
-            LoadData();
+           
 
-            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-
-            foreach (Dictionary<string, string> row in AllJobs)
             {
-                foreach (KeyValuePair<string, string> kvp in row)
+                // load data, if not already loaded
+                LoadData();
+
+                List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+                foreach (Dictionary<string, string> job in AllJobs)
                 {
-
-                    if (kvp.Value.ToLower().Contains(value.ToLower()))
+                    foreach (string row in job.Keys)
                     {
-                        if (jobs.Contains(row))
+                        string jobRow = job[row];
+                        if (jobRow.ToLower().Contains(value.ToLower()))
                         {
-                            continue;
-                        }
-                        jobs.Add(row);
-                    }
+                            jobs.Add(job);
+                            break;
 
-                 } 
+
+
+                        }
+
+                }
             }
 
             return jobs;
