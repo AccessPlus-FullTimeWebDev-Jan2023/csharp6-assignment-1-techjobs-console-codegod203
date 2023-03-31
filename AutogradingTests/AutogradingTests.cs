@@ -61,22 +61,42 @@ public class UnitTest1
         Assert.AreEqual(text, output);
     }
 
+    //[TestMethod]
+    //public void TestCaseInsensitiveSearch(Assert assert)
+    //{
+    //    string text = System.IO.File.ReadAllText("TestCaseInsensitiveSearch.txt");
+
+    //    var writer = new StringWriter();
+    //    Console.SetOut(writer);
+
+    //    var reader = new StringReader("0" + Environment.NewLine + "2" + Environment.NewLine + "new YORK" + Environment.NewLine + "x");
+    //    Console.SetIn(reader);
+    //    var app = new TechJobs();
+
+    //    app.RunProgram();
+
+    //    var output = writer.ToString();
+    //    Assert.AreEqual(text, output);
+    //}
     [TestMethod]
-    public void TestCaseInsensitiveSearch(Assert assert)
+    public void TestCaseInsensitiveSearch()
     {
         string text = System.IO.File.ReadAllText("TestCaseInsensitiveSearch.txt");
-
         var writer = new StringWriter();
         Console.SetOut(writer);
-
         var reader = new StringReader("0" + Environment.NewLine + "2" + Environment.NewLine + "new YORK" + Environment.NewLine + "x");
         Console.SetIn(reader);
         var app = new TechJobs();
-
         app.RunProgram();
-
         var output = writer.ToString();
         Assert.AreEqual(text, output);
     }
+
+
+
+
+
+
+
 
 }
