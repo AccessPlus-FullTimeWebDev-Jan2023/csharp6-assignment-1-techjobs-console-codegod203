@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Text;
 
 namespace TechJobsConsoleAutograded6
@@ -42,12 +43,47 @@ namespace TechJobsConsoleAutograded6
          */
 
         //TODO: Complete the FindByValue method
-        public static List<Dictionary<string, string>> FindByValue(string value)
-        {
-            // load data, if not already loaded
-            LoadData();
+        /**
+         * Returns results of search the jobs data by key/value, using
+         * inclusion of the search term.
+         *
+         * For example, searching for employer "Enterprise" will include results
+         * with "Enterprise Holdings, Inc".
+         */
 
-            return null;
+        /*
+         * Load and parse data from job_data.csv
+         */
+
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        
+            // load data, if not already loaded
+           
+
+            {
+                // load data, if not already loaded
+                LoadData();
+
+                List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+                foreach (Dictionary<string, string> job in AllJobs)
+                {
+                    foreach (string row in job.Keys)
+                    {
+                        string jobRow = job[row];
+                        if (jobRow.ToLower().Contains(value.ToLower()))
+                        {
+                            jobs.Add(job);
+                            break;
+
+
+
+                        }
+
+                }
+            }
+
+            return jobs;
         }
 
         /**
@@ -61,7 +97,6 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
-
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
@@ -70,18 +105,17 @@ namespace TechJobsConsoleAutograded6
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+
                 {
-                    jobs.Add(row);
+                    if (aValue.ToLower().Contains(value.ToLower()))
+
+
+                        jobs.Add(row);
                 }
             }
 
             return jobs;
         }
-
-        /*
-         * Load and parse data from job_data.csv
-         */
         private static void LoadData()
         {
 
